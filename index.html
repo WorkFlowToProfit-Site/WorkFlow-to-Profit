@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workflow to Profit | Reingeniería de procesos para PyMEs de alimentos en LATAM</title>
+<meta name="description" content="Workflow to Profit ayuda a PyMEs de alimentos en LATAM a rediseñar sus procesos operativos y recuperar rentabilidad, sin contratar un COO de tiempo completo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#001645;
+    --navy-soft:#0a2461;
+    --logo-blue:#003B9C;
+    --logo-gray:#6F6F6F;
+    --green:#6CBE29;
+    --green-dark:#59a01f;
+    --sky:#49BBF1;
+    --ink:#10172a;
+    --paper:#ffffff;
+    --paper-soft:#f5f7fb;
+    --line:#e4e8f1;
+    --muted:#5b6578;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#eef1f8;
+      --paper:#0b1226;
+      --paper-soft:#111a35;
+      --line:#223059;
+      --muted:#a7b1c7;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#eef1f8;
+    --paper:#0b1226;
+    --paper-soft:#111a35;
+    --line:#223059;
+    --muted:#a7b1c7;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 16px;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 16px;max-width:1120px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;}
+  .brand-rings{width:44px;height:auto;flex:none;}
+  .brand-text{display:flex;align-items:center;}
+  .brand-text .wordmark{
+    font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:14px;letter-spacing:.01em;color:#fff;line-height:1.2;
+  }
+  nav.links{display:flex;gap:26px;}
+  nav.links a{
+    color:#cfd8ef;text-decoration:none;font-size:14px;font-weight:500;
+    transition:color .15s;
+  }
+  nav.links a:hover{color:#fff;}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--green);color:#06230a;
+    padding:9px 16px;border-radius:999px;
+    font-size:14px;font-weight:600;text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--green-dark);}
+  .menu-btn{
+    display:none;background:none;border:1px solid rgba(255,255,255,.3);
+    border-radius:8px;color:#fff;padding:8px 10px;font-size:14px;
+  }
+  .mobile-links{display:none;flex-direction:column;gap:14px;padding:6px 16px 20px;background:var(--navy);}
+  .mobile-links a{color:#e7ecf8;text-decoration:none;font-size:15px;}
+  .mobile-links.open{display:flex;}
+
+  @media (max-width:820px){
+    nav.links{display:none;}
+    .menu-btn{display:inline-flex;}
+    .nav-cta{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:linear-gradient(160deg,var(--navy) 0%, var(--navy-soft) 55%, #06308f 100%);
+    color:#fff;padding:72px 0 88px;position:relative;overflow:hidden;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--sky);margin-bottom:18px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green);}
+  h1{font-size:clamp(28px,4.2vw,44px);line-height:1.15;margin:0 0 18px;font-weight:700;}
+  .hero p.lead{font-size:18px;color:#d6ddf2;max-width:520px;margin:0 0 30px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px;
+    text-decoration:none;border:1px solid transparent;transition:transform .12s, background .15s;
+  }
+  .btn-primary{background:var(--green);color:#06230a;}
+  .btn-primary:hover{background:var(--green-dark);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35);}
+  .btn-ghost:hover{background:rgba(255,255,255,.08);}
+
+  .hero-rings{justify-self:center;}
+  .hero-rings svg{width:min(320px,80vw);height:auto;}
+
+  @media (max-width:820px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-rings{order:-1;margin-bottom:8px;}
+    .hero-rings svg{width:170px;margin:0 auto;}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:76px 0;}
+  .section-soft{background:var(--paper-soft);}
+  .kicker{
+    font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--green-dark);margin:0 0 10px;
+  }
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .kicker{color:var(--green);}}
+  :root[data-theme="dark"] .kicker{color:var(--green);}
+  h2{font-size:clamp(24px,3vw,32px);margin:0 0 16px;font-weight:700;}
+  .section-intro{color:var(--muted);max-width:640px;font-size:16px;margin:0 0 40px;}
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  @media (max-width:820px){.grid-3{grid-template-columns:1fr;}.grid-2{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    padding:28px 24px;
+  }
+  .card .num{
+    font-family:'Michroma',sans-serif;font-size:13px;color:var(--sky);margin-bottom:14px;
+  }
+  .card h3{font-size:18px;margin:0 0 10px;font-weight:700;}
+  .card p{color:var(--muted);font-size:15px;margin:0;}
+
+  .phase-row{
+    display:flex;gap:18px;align-items:flex-start;padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .phase-row:last-child{border-bottom:none;}
+  .phase-badge{
+    flex:none;width:40px;height:40px;border-radius:50%;
+    background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:'Michroma',sans-serif;font-size:13px;
+  }
+  .phase-row h4{margin:0 0 6px;font-size:16px;font-weight:700;}
+  .phase-row p{margin:0;color:var(--muted);font-size:15px;}
+
+  .why-list{list-style:none;margin:0;padding:0;display:grid;gap:18px;}
+  .why-list li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;}
+  .why-list .check{
+    flex:none;width:24px;height:24px;border-radius:50%;background:var(--green);
+    color:#06230a;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;
+  }
+
+  .map-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+  .map-tags span{
+    background:var(--paper);border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;font-size:13.5px;color:var(--ink);
+  }
+
+  .about{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:center;}
+  @media (max-width:820px){.about{grid-template-columns:1fr;}}
+  .about-photo{
+    aspect-ratio:1/1;border-radius:20px;background:
+      radial-gradient(circle at 30% 30%, var(--sky), transparent 60%),
+      linear-gradient(160deg, var(--navy), var(--navy-soft));
+    display:flex;align-items:center;justify-content:center;
+  }
+  .about-photo svg{width:46%;}
+  .about h3{font-size:22px;margin:0 0 4px;}
+  .about .role{color:var(--green-dark);font-weight:600;font-size:14px;margin-bottom:16px;}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .about .role{color:var(--green);}}
+  :root[data-theme="dark"] .about .role{color:var(--green);}
+  .about p{color:var(--muted);font-size:15.5px;}
+
+  /* ---------- Contact ---------- */
+  .contact{
+    background:linear-gradient(160deg,var(--navy) 0%, var(--navy-soft) 100%);
+    color:#fff;border-radius:24px;padding:48px 32px;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;
+  }
+  @media (max-width:820px){.contact{grid-template-columns:1fr;padding:36px 22px;}}
+  .contact h2{color:#fff;}
+  .contact p{color:#d6ddf2;font-size:15.5px;max-width:460px;}
+  .contact-card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
+    border-radius:16px;padding:26px;
+  }
+  .contact-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:15px;}
+  .contact-row:last-child{margin-bottom:0;}
+  .contact-row .ic{
+    flex:none;width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .contact-row a{color:#fff;text-decoration:none;font-weight:600;}
+  .contact-row a:hover{text-decoration:underline;}
+  .contact-row span.label{display:block;color:#aeb9da;font-size:12.5px;margin-bottom:2px;}
+  .email-btn{
+    margin-top:18px;display:inline-flex;width:100%;justify-content:center;
+  }
+
+  footer{
+    padding:28px 0 36px;text-align:center;color:var(--muted);font-size:13.5px;
+  }
+  footer .wrap{border-top:1px solid var(--line);padding-top:24px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#inicio">
+      <svg class="brand-rings" viewBox="0 0 200 116" role="img" aria-label="Workflow to Profit">
+        <path d="M11 106 A 81.5 81.5 0 0 1 189 106" fill="none" stroke="#003B9C" stroke-width="15"/>
+        <path d="M38 106 A 55 55 0 0 1 162 106" fill="none" stroke="#6F6F6F" stroke-width="14"/>
+        <path d="M71 106 A 29 29 0 0 1 129 106 Z" fill="#6CBE29"/>
+      </svg>
+      <span class="brand-text"><span class="wordmark">Workflow to Profit</span></span>
+    </a>
+    <nav class="links">
+      <a href="#que-hacemos">Qué hacemos</a>
+      <a href="#metodologia">Metodología</a>
+      <a href="#por-que">Por qué nosotros</a>
+      <a href="#sobre-mi">Sobre mí</a>
+    </nav>
+    <a class="nav-cta" href="#contacto">Escribinos</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">Menú</button>
+  </div>
+  <div class="mobile-links" id="mobileLinks">
+    <a href="#que-hacemos">Qué hacemos</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#por-que">Por qué nosotros</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Consultoría operativa para PyMEs de alimentos en LATAM</div>
+      <h1>Tu planta tiene todo para crecer. Que la operación no sea lo que te frena.</h1>
+      <p class="lead">Rediseñamos los procesos de tu planta para recuperar rentabilidad y cumplimiento — sin que tengas que contratar un COO de tiempo completo.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:info@workflowtoprofit.com?subject=Quiero%20agendar%20un%20diagnóstico%20con%20Workflow%20to%20Profit">Escribinos por email</a>
+        <a class="btn btn-ghost" href="#metodologia">Cómo trabajamos</a>
+      </div>
+    </div>
+    <div class="hero-rings">
+      <svg viewBox="0 0 200 116" role="img" aria-label="Logo Workflow to Profit">
+        <path d="M11 106 A 81.5 81.5 0 0 1 189 106" fill="none" stroke="#003B9C" stroke-width="15"/>
+        <path d="M38 106 A 55 55 0 0 1 162 106" fill="none" stroke="#6F6F6F" stroke-width="14"/>
+        <path d="M71 106 A 29 29 0 0 1 129 106 Z" fill="#6CBE29"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="que-hacemos">
+  <div class="wrap">
+    <p class="kicker">Qué hacemos</p>
+    <h2>El error operativo más caro es casi invisible</h2>
+    <p class="section-intro">Muchas PyMEs de alimentos operan hoy con layouts, turnos y procesos que fueron diseñados para otra etapa de la empresa. La brecha entre la misión del negocio y cómo opera realmente la planta es, casi siempre, donde se pierde el margen.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Diagnóstico operativo</h3>
+        <p>Mapeamos tu proceso real, de materia prima a producto terminado, y encontramos dónde se pierde tiempo, calidad o dinero.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Rediseño de procesos</h3>
+        <p>Rediseñamos layout, flujos y estándares de trabajo para que tu planta rinda al nivel que tu negocio necesita hoy.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Mejora continua integrada</h3>
+        <p>Un líder de mejora continua se integra a tu equipo desde el diagnóstico, para que los resultados se sostengan después de que nos vamos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-soft" id="metodologia">
+  <div class="wrap">
+    <p class="kicker">Metodología</p>
+    <h2>Un proceso estructurado en 5 fases, no una consultoría de diapositivas</h2>
+    <p class="section-intro">Trabajamos con un método claro, con entregables concretos en cada etapa y honorarios atados a hitos del proyecto — no a horas facturadas.</p>
+    <div class="grid-2">
+      <div>
+        <div class="phase-row">
+          <div class="phase-badge">1</div>
+          <div><h4>Entendimiento del negocio</h4><p>Alineamos el proyecto con tus objetivos de negocio antes de tocar la planta.</p></div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-badge">2</div>
+          <div><h4>Diagnóstico</h4><p>Desde el Día 1 de esta fase, el líder de mejora continua ya está trabajando dentro de tu equipo.</p></div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-badge">3</div>
+          <div><h4>Diseño de la solución</h4><p>Definimos el rediseño de procesos, con metas medibles y un plan de implementación realista.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="phase-row">
+          <div class="phase-badge">4</div>
+          <div><h4>Implementación</h4><p>Acompañamos la puesta en marcha de los cambios en planta, junto a tu equipo.</p></div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-badge">5</div>
+          <div><h4>Transferencia y cierre</h4><p>Dejamos el proceso y el conocimiento instalados en tu equipo, no dependiendo de nosotros.</p></div>
+        </div>
+        <div class="phase-row">
+          <div></div>
+          <div><h4 style="color:var(--muted);font-weight:600;">Honorarios por hitos</h4><p>Pagos atados al avance real del proyecto, con condiciones claras desde el inicio.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="por-que">
+  <div class="wrap">
+    <p class="kicker">Por qué Workflow to Profit</p>
+    <h2>El diferenciador no es el diagnóstico. Es que nos quedamos a implementarlo.</h2>
+    <ul class="why-list">
+      <li><span class="check">✓</span><span>No necesitás contratar un COO de tiempo completo: integramos un líder de mejora continua a tu equipo por la duración del proyecto.</span></li>
+      <li><span class="check">✓</span><span>Enfoque específico en PyMEs de alimentos: entendemos la presión de cumplimiento HACCP/FSSC junto con la presión de rentabilidad.</span></li>
+      <li><span class="check">✓</span><span>Honorarios transparentes, atados a hitos del proyecto — sabés desde el día uno qué estás pagando y por qué.</span></li>
+      <li><span class="check">✓</span><span>Trabajamos codo a codo con tu equipo, no por encima de él: el objetivo es que la mejora se sostenga sin nosotros.</span></li>
+    </ul>
+    <div class="map-tags">
+      <span>🇲🇽 México</span><span>🇬🇹 Centroamérica</span><span>🇨🇴 Colombia</span><span>🇪🇨 Ecuador</span><span>🇵🇪 Perú</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-soft" id="sobre-mi">
+  <div class="wrap about">
+    <div class="about-photo">
+      <svg viewBox="0 0 200 116" role="img" aria-label="Workflow to Profit">
+        <path d="M11 106 A 81.5 81.5 0 0 1 189 106" fill="none" stroke="#ffffff" stroke-width="15" opacity="0.9"/>
+        <path d="M38 106 A 55 55 0 0 1 162 106" fill="none" stroke="#ffffff" stroke-width="14" opacity="0.55"/>
+        <path d="M71 106 A 29 29 0 0 1 129 106 Z" fill="#6CBE29"/>
+      </svg>
+    </div>
+    <div>
+      <h3>Eduardo Swiderski</h3>
+      <div class="role">Fundador y Director General, Workflow to Profit</div>
+      <p>Fundé Workflow to Profit después de años viendo de cerca algo que se repite en la industria de alimentos: empresas que crecen en ventas mientras su operación se queda en la etapa anterior del negocio. Esa brecha es la que resuelvo con cada cliente — con un método claro, resultados medibles y un equipo que se queda, codo a codo con el tuyo, hasta que el cambio quede instalado.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <h2>Hablemos de tu operación</h2>
+        <p>Si tu PyME de alimentos está creciendo en ventas pero no estás seguro de que tu operación esté lista para acompañar ese crecimiento, escribinos. El primer diagnóstico de la conversación no tiene costo.</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="ic">✉️</span>
+          <div>
+            <span class="label">Email</span>
+            <a href="mailto:info@workflowtoprofit.com">info@workflowtoprofit.com</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="ic">📞</span>
+          <div>
+            <span class="label">Teléfono / WhatsApp</span>
+            <a href="tel:+525544876657">+52 55 4487 6657</a>
+          </div>
+        </div>
+        <a class="btn btn-primary email-btn" href="mailto:info@workflowtoprofit.com?subject=Quiero%20agendar%20un%20diagnóstico%20con%20Workflow%20to%20Profit">Escribir a info@workflowtoprofit.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> Workflow to Profit · Reingeniería de procesos para PyMEs de alimentos en LATAM<br>
+    México · Centroamérica · Colombia · Ecuador · Perú
+  </div>
+</footer>
+
+<script>
+  try{
+    document.getElementById('year').textContent = new Date().getFullYear();
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileLinks = document.getElementById('mobileLinks');
+    menuBtn.addEventListener('click', function(){
+      var open = mobileLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobileLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        mobileLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      });
+    });
+  }catch(e){}
+</script>
+
+</body>
+</html>
